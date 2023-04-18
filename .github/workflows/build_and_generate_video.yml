@@ -29,6 +29,9 @@ jobs:
     - name: Build package
       run: make build
 
+    - name: Install package
+      run: pip install --find-links file://dist videonoise
+
     - name: Generate short video
       run: videonoise -o short_video.mp4 -w 640 -t 480 -f 30 -d 5
 
