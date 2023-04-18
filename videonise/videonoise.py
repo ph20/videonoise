@@ -35,7 +35,7 @@ def generate_white_noise_video(output, width, height, fps, duration):
     os.remove(audio_without_video)
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Generate a white noise video with audio.")
     parser.add_argument("-o", "--output", type=str, default="white_noise_video.mp4", help="Output video file path.")
     parser.add_argument("-w", "--width", type=int, default=640, help="Video width.")
@@ -46,3 +46,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_white_noise_video(args.output, args.width, args.height, args.fps, args.duration)
+
+
+if __name__ == "__main__":
+    main()
