@@ -20,5 +20,5 @@ make install
 ## Usage
 To generate a white noise video, run:
 ```bash
-videonise -o output.mp4 -w 640 -t 480 -f 30 -d 10
+videonoise -o output.mp4 -w 640 -t 480 -f 30 -d 10
 ```
