@@ -7,13 +7,13 @@ from pathlib import Path
 import argparse
 import numpy as np
 from pydub import AudioSegment
-from pydub.utils import get_encoder_name
+from pydub.utils import which
 from moviepy.editor import AudioFileClip, VideoClip
 
 
 def generate_white_noise_video(output, width, height, fps, duration):
-    if not get_encoder_name():
-        raise SystemExit('Can\'t find encoder "ffmpeg" or "avconv')
+    if not which("ffmpeg"):
+        raise SystemExit('Can\'t find encoder "ffmpeg"')
     output_path = Path(output)
     audio_without_video = str(output_path.with_name(output_path.parent.resolve().stem + "_without_video.mp3"))
 
