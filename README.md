@@ -1,4 +1,4 @@
-# Videonise
+# Videonoise
 
 Videonise is a simple Python script to generate a white noise video with audio.
 
@@ -15,7 +15,7 @@ make build
 To install, run:
 
 ```bash
-make install
+pip install videonoise
 ```
 ## Usage
 To generate a white noise video, run:
