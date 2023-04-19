@@ -23,8 +23,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install build
+        python -m pip install --progress-bar=off --quiet --upgrade pip
+        pip install --progress-bar=off --quiet build
 
     - name: Build package
       run: make build
@@ -49,6 +49,8 @@ jobs:
         python-version: 3.9
 
     - name: Install FFmpeg
+      env:
+        DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update -qq
         sudo apt-get install -qq --no-install-recommends -y ffmpeg
@@ -60,10 +62,10 @@ jobs:
         path: dist
 
     - name: Install package
-      run: pip install --find-links file://${{ github.workspace }}/dist videonoise
+      run: pip install --progress-bar=off --find-links file://${{ github.workspace }}/dist videonoise
 
     - name: Generate short video
-      run: videonoise -o short_video.mp4 -w 640 -t 480 -f 30 -d 5
+      run: videonoise short_video.mp4 -w 640 -t 480 -f 30 -d 5
 
     - name: Upload short video
       uses: actions/upload-artifact@v2
