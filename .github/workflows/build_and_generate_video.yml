@@ -9,7 +9,34 @@ on:
       - main
 
 jobs:
-  build_and_generate_video:
+  build_package:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build package
+      run: make build
+
+    - name: Upload package
+      uses: actions/upload-artifact@v2
+      with:
+        name: videonoise_package
+        path: dist/*.whl
+
+  generate_video:
+    needs: build_package
     runs-on: ubuntu-latest
 
     steps:
@@ -26,13 +53,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ffmpeg
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Build package
-      run: make build
+    - name: Download package
+      uses: actions/download-artifact@v2
+      with:
+        name: videonoise_package
+        path: dist
 
     - name: Install package
       run: pip install --find-links file://${{ github.workspace }}/dist videonoise
