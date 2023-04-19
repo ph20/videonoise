@@ -26,6 +26,11 @@ jobs:
         python -m pip install --progress-bar=off --quiet --upgrade pip
         pip install --progress-bar=off --quiet build
 
+    - name: Preprocess version build strings
+      run: |
+        sed -i "s/^__dev_suffix__ = ''/__dev_suffix__ = '.dev'/g" setup.py
+        sed -i "s/^__dev_build__ = ''/__dev_build__ = '${GITHUB_RUN_NUMBER}'/g" setup.py
+
     - name: Build package
       run: make build
 

@@ -3,6 +3,13 @@
 
 from setuptools import setup, find_packages
 
+# those lines for preprocessing
+# f.e.
+# sed -i "s/^__dev_suffix__ = ''/__dev_suffix__ = '.dev'/g" setup.py
+# sed -i "s/^__dev_build__ = ''/__dev_build__ = '${BUILD_NUMBER}'/g" setup.py
+__dev_suffix__ = ''  # commonly ".dev"
+__dev_build__ = ''   # commonly pipeline number
+
 
 def long_description():
     with open("README.md", "r") as fh:
@@ -11,7 +18,7 @@ def long_description():
 
 setup(
     name="videonoise",
-    version="0.3",
+    version="0.3" + __dev_suffix__ + __dev_build__,
     description='Videonoise - util for generate a white noise video with audio.',
     packages=find_packages(),
     entry_points={
