@@ -11,7 +11,7 @@ def long_description():
 
 setup(
     name="videonoise",
-    version="0.2",
+    version="0.3",
     description='Videonoise - util for generate a white noise video with audio.',
     packages=find_packages(),
     entry_points={
@@ -29,10 +29,10 @@ setup(
     url='https://github.com/ph20/videonoise',
     author='Alexander Grynchuk',
     author_email='agrynchuk@gmail.com',
-    classifiers=[  # Optional
+    classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
+        'Topic :: Software Development :: Testing',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
